@@ -471,6 +471,58 @@ prebuilt_etc_xml {
     recovery: true,
 }
 
+rust_prebuilt_binary {
+    name: "dump_modem",
+    owner: "google",
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/bin/dump/dump_modem",
+            ],
+            shared_libs: [
+                "libc",
+            ],
+            rustlibs: [
+                "libstd",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    prefer: true,
+    relative_install_path: "dump",
+    soc_specific: true,
+}
+
+rust_prebuilt_binary {
+    name: "gpuflag",
+    owner: "google",
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/bin/gpuflag",
+            ],
+            shared_libs: [
+                "libc",
+            ],
+            rustlibs: [
+                "libandroid_logger",
+                "librustutils",
+                "liblog_rust",
+                "libstd",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    prefer: true,
+    soc_specific: true,
+}
+
 cc_prebuilt_binary {
     name: "gs_watchdogd",
     owner: "google",
@@ -3013,7 +3065,6 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libdmabufheap",
                 "libhardware",
-                "libion",
                 "liblog",
                 "libutils",
                 "libc++",
@@ -3037,7 +3088,6 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libdmabufheap",
                 "libhardware",
-                "libion",
                 "liblog",
                 "libutils",
                 "libc++",
@@ -3570,7 +3620,7 @@ cc_prebuilt_library_shared {
                 "libbinder",
                 "libcutils",
                 "liblog",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "libutils",
                 "libc++",
                 "libc",
@@ -3588,7 +3638,7 @@ cc_prebuilt_library_shared {
                 "libbinder",
                 "libcutils",
                 "liblog",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "libutils",
                 "libc++",
                 "libc",
@@ -4360,6 +4410,82 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "libprotobuf-cpp-full-6.33.5-absl20260526",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: [
+                "proprietary/vendor/lib/libprotobuf-cpp-full-6.33.5-absl20260526.so",
+            ],
+            shared_libs: [
+                "libz",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libprotobuf-cpp-full-6.33.5-absl20260526.so",
+            ],
+            shared_libs: [
+                "libz",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libprotobuf-cpp-lite-6.33.5-absl20260526",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: [
+                "proprietary/vendor/lib/libprotobuf-cpp-lite-6.33.5-absl20260526.so",
+            ],
+            shared_libs: [
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libprotobuf-cpp-lite-6.33.5-absl20260526.so",
+            ],
+            shared_libs: [
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "libqorvo_uwb_params_nfcc",
     owner: "google",
     strip: {
@@ -5116,7 +5242,7 @@ cc_prebuilt_library_shared {
                 "libnosprotos",
                 "libutils",
                 "android.hardware.oemlock-V1-ndk",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "nos_app_avb",
                 "libbinder_ndk",
                 "libc++",
@@ -5258,7 +5384,7 @@ cc_prebuilt_library_shared {
                 "libnos_citadeld_proxy",
                 "libnos_feature",
                 "libutils",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "nos_app_keymaster",
                 "android.hardware.security.keymint-V3-ndk",
                 "libkeymint_support_V3",
@@ -5292,7 +5418,7 @@ cc_prebuilt_library_shared {
                 "libnosprotos",
                 "libutils",
                 "android.hardware.weaver-V3-ndk",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "nos_app_weaver",
                 "libnos_citadeld_proxy",
                 "libnos_feature",
@@ -5330,7 +5456,7 @@ cc_prebuilt_library_shared {
                 "libutils",
                 "android.hardware.weaver-V3-ndk",
                 "libbinder_ndk",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "nos_app_weaver",
                 "libnos_citadeld_proxy",
                 "libc++",
@@ -5812,7 +5938,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libExynosHWCService.so",
             ],
             shared_libs: [
-                "com.google.hardware.pixel.display-V21-ndk",
+                "com.google.hardware.pixel.display-V23-ndk",
                 "liblog",
                 "libcutils",
                 "libutils",
@@ -6036,35 +6162,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libdisppower-pixel",
-    owner: "google",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libdisppower-pixel.so",
-            ],
-            shared_libs: [
-                "libbase",
-                "libcutils",
-                "liblog",
-                "libperfmgr",
-                "libutils",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
     name: "libdrmresource",
     owner: "google",
     strip: {
@@ -6179,7 +6276,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libexynosdisplay.so",
             ],
             shared_libs: [
-                "com.google.hardware.pixel.display-V21-ndk",
+                "com.google.hardware.pixel.display-V23-ndk",
                 "liblog",
                 "libcutils",
                 "libhardware",
@@ -6476,13 +6573,13 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libpixelstats.so",
             ],
             shared_libs: [
-                "android.frameworks.stats-V2-ndk",
+                "android.frameworks.stats-V3-ndk",
                 "libbase",
                 "libbinder_ndk",
                 "libcutils",
                 "libhidlbase",
                 "liblog",
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libutils",
                 "libsensorndkbridge",
                 "pixelatoms-cpp",
@@ -6545,7 +6642,7 @@ cc_prebuilt_library_shared {
                 "libbase",
                 "libcutils",
                 "libsit_oem_proto",
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libc++",
                 "libc",
                 "libm",
@@ -6570,7 +6667,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/libsit_oem_proto.so",
             ],
             shared_libs: [
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libc++",
                 "libc",
                 "libm",
@@ -6795,7 +6892,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/pixelatoms-cpp.so",
             ],
             shared_libs: [
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libc++",
                 "libc",
                 "libm",
@@ -6901,7 +6998,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/vendor-pixelatoms-cpp.so",
             ],
             shared_libs: [
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libc++",
                 "libc",
                 "libm",
@@ -6993,6 +7090,31 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "vendor.google.plat_security-V1-ndk",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/vendor.google.plat_security-V1-ndk.so",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "vendor_chre_atoms_log",
     owner: "google",
     strip: {
@@ -7028,7 +7150,7 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib64/vendor_chre_metrics-cpp.so",
             ],
             shared_libs: [
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libc++",
                 "libc",
                 "libm",
@@ -7230,6 +7352,15 @@ prebuilt_etc_xml {
 }
 
 prebuilt_etc_xml {
+    name: "manifest_mapper_framework.xml",
+    owner: "google",
+    src: "proprietary/vendor/etc/vintf/manifest/manifest_mapper_framework.xml",
+    filename_from_src: true,
+    sub_dir: "vintf/manifest",
+    soc_specific: true,
+}
+
+prebuilt_etc_xml {
     name: "manifest_android.hardware.drm-service.castkey.xml",
     owner: "google",
     src: "proprietary/vendor/etc/vintf/manifest/manifest_android.hardware.drm-service.castkey.xml",
@@ -7260,15 +7391,6 @@ prebuilt_etc_xml {
     name: "manifest_input.processor-service.xml",
     owner: "google",
     src: "proprietary/vendor/etc/vintf/manifest/manifest_input.processor-service.xml",
-    filename_from_src: true,
-    sub_dir: "vintf/manifest",
-    soc_specific: true,
-}
-
-prebuilt_etc_xml {
-    name: "manifest_mapper_framework.xml",
-    owner: "google",
-    src: "proprietary/vendor/etc/vintf/manifest/manifest_mapper_framework.xml",
     filename_from_src: true,
     sub_dir: "vintf/manifest",
     soc_specific: true,
@@ -7341,6 +7463,15 @@ prebuilt_etc_xml {
     name: "vendor.google.google_battery-default.xml",
     owner: "google",
     src: "proprietary/vendor/etc/vintf/manifest/vendor.google.google_battery-default.xml",
+    filename_from_src: true,
+    sub_dir: "vintf/manifest",
+    soc_specific: true,
+}
+
+prebuilt_etc_xml {
+    name: "vendor.google.plat_security-service.xml",
+    owner: "google",
+    src: "proprietary/vendor/etc/vintf/manifest/vendor.google.plat_security-service.xml",
     filename_from_src: true,
     sub_dir: "vintf/manifest",
     soc_specific: true,
@@ -7523,31 +7654,6 @@ sh_binary {
     src: "proprietary/vendor/bin/dump/dump_gsc.sh",
     filename: "dump_gsc.sh",
     sub_dir: "dump",
-    soc_specific: true,
-}
-
-rust_prebuilt_binary {
-    name: "dump_modem",
-    owner: "google",
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/bin/dump/dump_modem",
-            ],
-            shared_libs: [
-                "libc",
-            ],
-            rustlibs: [
-                "libstd",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    relative_install_path: "dump",
     soc_specific: true,
 }
 
@@ -7809,33 +7915,6 @@ sh_binary {
     soc_specific: true,
 }
 
-rust_prebuilt_binary {
-    name: "gpuflag",
-    owner: "google",
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/bin/gpuflag",
-            ],
-            shared_libs: [
-                "libc",
-            ],
-            rustlibs: [
-                "libandroid_logger",
-                "librustutils",
-                "liblog_rust",
-                "libstd",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    strip: {
-        none: true,
-    },
-    prefer: true,
-    soc_specific: true,
-}
-
 cc_prebuilt_binary {
     name: "android.hardware.authsecret-service.citadel",
     owner: "google",
@@ -7987,7 +8066,7 @@ cc_prebuilt_binary {
                 "proprietary/vendor/bin/hw/android.hardware.composer.hwc3-service.pixel",
             ],
             shared_libs: [
-                "com.google.hardware.pixel.display-V21-ndk",
+                "com.google.hardware.pixel.display-V23-ndk",
                 "android.hardware.graphics.composer3-V5-ndk",
                 "android.hardware.graphics.composer@2.1-resources",
                 "android.hardware.graphics.composer@2.2-resources",
@@ -8043,7 +8122,7 @@ cc_prebuilt_binary {
                 "libcutils",
                 "libjsoncpp",
                 "liblog",
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "libutils",
                 "server_configurable_flags",
                 "pixelatoms-cpp",
@@ -8344,7 +8423,7 @@ cc_prebuilt_binary {
                 "libbinder_ndk",
                 "liblog",
                 "libnativewindow",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "libutils",
                 "android.hardware.neuralnetworks-V4-ndk",
                 "android.hardware.neuralnetworks@1.0",
@@ -8422,12 +8501,12 @@ cc_prebuilt_binary {
                 "liblog",
                 "libutils",
                 "libbinder_ndk",
-                "libdisppower-pixel",
                 "libperfmgr",
                 "libprocessgroup",
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
+                "libjsoncpp",
                 "pixel-power-ext-V2-ndk",
-                "android.frameworks.stats-V2-ndk",
+                "android.frameworks.stats-V3-ndk",
                 "android.hardware.common.fmq-V1-ndk",
                 "libfmq",
                 "libc++",
@@ -8524,7 +8603,7 @@ cc_prebuilt_binary {
                 "libcppbor",
                 "libnos",
                 "libnosprotos",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "libkeymaster_portable",
                 "liblog",
                 "libutils",
@@ -8565,7 +8644,7 @@ cc_prebuilt_binary {
                 "libutils",
                 "libnl",
                 "libbinder_ndk",
-                "android.frameworks.stats-V2-ndk",
+                "android.frameworks.stats-V3-ndk",
                 "android.hardware.power-V1-ndk",
                 "android.hardware.thermal-V3-ndk",
                 "thermal-budget-interface-ndk",
@@ -8610,10 +8689,10 @@ cc_prebuilt_binary {
                 "android.hardware.usb.gadget@1.0",
                 "android.hardware.usb.gadget-V1-ndk",
                 "libcutils",
-                "android.frameworks.stats-V2-ndk",
+                "android.frameworks.stats-V3-ndk",
                 "pixelatoms-cpp",
                 "libbinder_ndk",
-                "libprotobuf-cpp-lite",
+                "libprotobuf-cpp-lite-6.33.5-absl20260526",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
                 "libc++",
@@ -8899,7 +8978,6 @@ cc_prebuilt_binary {
                 "libavservices_minijail",
                 "libvndksupport",
                 "libbinder_ndk",
-                "android.hardware.media.c2@1.0",
                 "libcodec2",
                 "libgc2_store",
                 "libgc2_log",
@@ -9119,6 +9197,40 @@ cc_prebuilt_binary {
                 "libbase",
                 "libbinder_ndk",
                 "vendor.google.google_battery-V5-ndk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    prefer: true,
+    relative_install_path: "hw",
+    soc_specific: true,
+}
+
+cc_prebuilt_binary {
+    name: "vendor.google.plat_security-service",
+    owner: "google",
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/bin/hw/vendor.google.plat_security-service",
+            ],
+            shared_libs: [
+                "libbase",
+                "libcutils",
+                "liblog",
+                "libtrusty",
+                "libbinder_ndk",
+                "libdmabufheap",
+                "vendor.google.plat_security-V1-ndk",
+                "android.hardware.security.timestamp-V1-ndk",
+                "libaconfig_storage_read_api_cc",
                 "libc++",
                 "libc",
                 "libm",
@@ -9397,7 +9509,7 @@ cc_prebuilt_binary {
                 "libutils",
                 "android.frameworks.stats-V2-ndk",
                 "libbinder_ndk",
-                "libprotobuf-cpp-full",
+                "libprotobuf-cpp-full-6.33.5-absl20260526",
                 "libtouchflow",
                 "server_configurable_flags",
                 "libaconfig_storage_read_api_cc",
